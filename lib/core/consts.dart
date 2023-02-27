@@ -1,5 +1,5 @@
 abstract class Consts {
-  static var HIVE_BOX = "hive_box123";
+  static var HIVE_BOX = "hive_box1243";
 }
 
 abstract class HiveConsts {
