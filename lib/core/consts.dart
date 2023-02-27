@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 abstract class Consts {
   static var HIVE_BOX = "hive_box1243";
 }

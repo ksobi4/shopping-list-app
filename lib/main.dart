@@ -48,6 +48,7 @@ Future<void> main() async {
   );
 }
 
+// ignore: must_be_immutable
 class App extends StatelessWidget {
   String path;
   App({

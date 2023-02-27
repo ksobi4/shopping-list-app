@@ -5,8 +5,6 @@ class IntoPage1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(child: Text('page 1')),
-    );
+    return const Center(child: Text('page 1'));
   }
 }

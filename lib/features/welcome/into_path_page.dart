@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping_list/core/consts.dart';
@@ -19,7 +17,7 @@ class IntoPathPage extends StatefulWidget {
 }
 
 class _IntoPathPageState extends State<IntoPathPage> {
-  PageController _controller = PageController();
+  final PageController _controller = PageController();
 
   int pageIndex = 0;
 
@@ -47,7 +45,7 @@ class _IntoPathPageState extends State<IntoPathPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 100,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -59,12 +57,12 @@ class _IntoPathPageState extends State<IntoPathPage> {
                                           const Duration(milliseconds: 500),
                                       curve: Curves.easeIn),
                                   child: Text('into_btn_prev'.tr()))
-                              : Text(''),
+                              : const Text(''),
                         ],
                       ),
                     ),
                     SmoothPageIndicator(controller: _controller, count: 3),
-                    Container(
+                    SizedBox(
                       width: 100,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

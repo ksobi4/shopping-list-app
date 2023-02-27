@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shopping_list/core/widgets/drawer_widget.dart';
-
-import 'utils/logger.dart';
+import 'package:shopping_list/features/home/data/home_remote_repo.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,11 +20,15 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           const Text('helo'),
-          ElevatedButton(onPressed: (() async {}), child: Text('press')),
+          ElevatedButton(
+              onPressed: (() async {
+                HomeRemoteRepo repo = HomeRemoteRepo();
+                repo.getCatalogs();
+              }),
+              child: Text('press')),
         ],
       ),
       drawer: const DrawerWidget(),
     );
-    ;
   }
 }
