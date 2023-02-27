@@ -1,3 +1,5 @@
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shopping_list/core/go%20router/consts.dart';
 import 'package:shopping_list/features/welcome/into_path_page.dart';
