@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping_list/core/consts.dart';
-import 'package:shopping_list/core/go%20router/consts.dart';
+import 'package:shopping_list/core/go%20router/router_consts.dart';
 import 'package:shopping_list/features/welcome/into%20pages/into_page1.dart';
 import 'package:shopping_list/features/welcome/into%20pages/into_page2.dart';
 import 'package:shopping_list/features/welcome/into%20pages/into_page3.dart';
@@ -76,7 +76,7 @@ class _IntoPathPageState extends State<IntoPathPage> {
                                   child: Text('into_btn_next'.tr()))
                               : ElevatedButton(
                                   onPressed: () {
-                                    var hiveBox = Hive.box(Consts.HIVE_BOX);
+                                    var hiveBox = Hive.box(HiveConsts.HIVE_BOX);
                                     hiveBox.put(
                                         HiveConsts.introductionPath, 'true');
 

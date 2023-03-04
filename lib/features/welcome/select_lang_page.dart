@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:shopping_list/core/consts.dart';
-import 'package:shopping_list/core/go%20router/consts.dart';
 import 'package:shopping_list/utils/initial_page.dart';
+import 'package:shopping_list/utils/local_storage.dart';
 
 class SelectLangPage extends StatefulWidget {
   const SelectLangPage({super.key});
@@ -32,7 +32,6 @@ class _SelectLangPageState extends State<SelectLangPage> {
                 height: 100,
                 child: InkWell(
                   onTap: () {
-                    var hiveBox = Hive.box(Consts.HIVE_BOX);
                     hiveBox.put(HiveConsts.selectedLang, 'en');
 
                     context.setLocale(const Locale('en'));
@@ -47,7 +46,6 @@ class _SelectLangPageState extends State<SelectLangPage> {
                 height: 100,
                 child: InkWell(
                   onTap: () {
-                    var hiveBox = Hive.box(Consts.HIVE_BOX);
                     hiveBox.put(HiveConsts.selectedLang, 'pl');
 
                     context.setLocale(const Locale('pl'));

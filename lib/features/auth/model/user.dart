@@ -1,18 +1,14 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:shopping_list/features/home/model/items_list.dart';
 
+part 'user.freezed.dart';
 part 'user.g.dart';
 
-@JsonSerializable()
-class User {
-  String nickname;
-  List<String> catalogsIdList;
-
-  User({
-    required this.nickname,
-    required this.catalogsIdList,
-  });
+@freezed
+abstract class User with _$User {
+  const factory User(
+      {required String nickname,
+      @Default([]) List<String> catalogsIdList}) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

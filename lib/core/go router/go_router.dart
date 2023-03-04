@@ -1,9 +1,8 @@
 import 'package:go_router/go_router.dart';
-import 'package:shopping_list/core/go%20router/consts.dart';
+import 'package:shopping_list/core/go%20router/router_consts.dart';
+import 'package:shopping_list/features/home/presentation/items_list_page.dart';
 import 'package:shopping_list/features/welcome/into_path_page.dart';
 import 'package:shopping_list/features/welcome/select_lang_page.dart';
-
-import '../../features/home/presentation/home_page.dart';
 
 GoRouter getRouter(String initPage) {
   final router = GoRouter(
@@ -11,7 +10,7 @@ GoRouter getRouter(String initPage) {
     routes: [
       GoRoute(
         path: HOME_R,
-        builder: (context, state) => const HomePage(),
+        builder: (context, state) => const ItemsListPage(),
       ),
       GoRoute(
         path: SELECT_LANG_R,

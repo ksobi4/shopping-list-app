@@ -1,12 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:shopping_list/utils/database.dart';
+import 'package:shopping_list/utils/local_storage.dart';
 
-import 'core/config/firebase_options.dart';
-import 'core/consts.dart';
 import 'core/go router/go_router.dart';
 import 'core/themes.dart';
 import 'utils/initial_page.dart';
@@ -17,18 +14,10 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   //hive
-  final appDocumentDir = await getApplicationDocumentsDirectory();
-  Hive.init(appDocumentDir.path);
-  await Hive.openBox(Consts.HIVE_BOX);
+  await initLocalStorage();
 
   //firebase
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  if (FirebaseAuth.instance.currentUser == null) {
-    await FirebaseAuth.instance.signInAnonymously();
-  }
+  await initFirebase();
 
   String initialPage = getInitialPage();
 
