@@ -7,7 +7,8 @@ part 'items_list.g.dart';
 part 'items_list.freezed.dart';
 
 @freezed
-abstract class ItemsList with _$ItemsList {
+// @JsonSerializable(explicitToJson: true)
+class ItemsList with _$ItemsList {
   @HiveType(typeId: 1)
   const factory ItemsList({
     @HiveField(0) required String name,

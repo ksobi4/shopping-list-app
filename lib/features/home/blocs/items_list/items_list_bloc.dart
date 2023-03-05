@@ -1,5 +1,3 @@
-// ignore_for_file: unrelated_type_equality_checks
-
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -29,9 +27,9 @@ class ItemsListBloc extends Bloc<ItemsListEvent, ItemsListState> {
         await itemsListRepo.getItemsList();
 
     failOrData.fold((failure) {
-      if (failure == FirebaseFailure) {
+      if (failure is FirebaseFailure) {
         emit(ItemsListState.error(failure));
-      } else if (failure == CacheFailure) {
+      } else if (failure is CacheFailure) {
         emit(ItemsListState.error(failure));
       } else {
         emit(ItemsListState.error(Failure('inny blad')));

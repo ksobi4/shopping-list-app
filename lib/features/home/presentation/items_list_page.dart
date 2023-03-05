@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_list/core/widgets/drawer_widget.dart';
 import 'package:shopping_list/features/home/blocs/items_list/items_list_bloc.dart';
+import 'package:shopping_list/utils/database.dart';
 import 'package:shopping_list/utils/get_it.dart';
 
-class CatalogPage extends StatelessWidget {
-  const CatalogPage({super.key});
+class ItemsListPage extends StatelessWidget {
+  const ItemsListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +18,32 @@ class CatalogPage extends StatelessWidget {
       ),
       body: Column(
         children: [
+          ElevatedButton(
+              onPressed: () async {
+                await addFirstItemsListToDB();
+              },
+              child: const Text('test btn')),
           BlocProvider<ItemsListBloc>.value(
-              value: l<ItemsListBloc>(),
+              value: l<ItemsListBloc>()
+                ..add(const ItemsListEvent.getItemsList()),
               child: BlocBuilder<ItemsListBloc, ItemsListState>(
                 builder: (context, state) {
-                  return Text('');
+                  if (state is ItemsListStateInit) {
+                    return Text('init');
+                  } else if (state is ItemsListStateLoading) {
+                    return Text('loading');
+                  } else if (state is ItemsListStateError) {
+                    return Text('err = ${state.failure.message}');
+                  } else if (state is ItemsListStateLoaded) {
+                    return Text(state.list.isEmpty
+                        ? 'lista pusta'
+                        : state.list[0].name);
+                  }
+                  return Text('chuj wie');
                 },
               ))
         ],
       ),
     );
-  }
-}
-
-class ItemsListPage extends StatelessWidget {
-  const ItemsListPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shopping_list/core/error/failures.dart';
 import 'package:shopping_list/features/home/model/items_list.dart';
-import 'package:shopping_list/utils/auth.dart';
 import 'package:shopping_list/utils/database.dart';
 
 import '../../../utils/logger.dart';
@@ -14,23 +13,27 @@ class ItemsListRemoteRepo {
 
   Future<Either<Failure, List<ItemsList>>> getItemsList() async {
     try {
+      List<ItemsList> outputList = [];
       String userID = getUserId();
+
       var snap = await db.collection('users').doc(userID).get();
+
+      if (snap.data() == null) {
+        return Right(outputList);
+      }
 
       var jsonData = snap.data() as Map<String, dynamic>;
 
       User user = User.fromJson(jsonData);
 
-      List<ItemsList> outputList = [];
-
       for (var catalogId in user.catalogsIdList) {
-        var snap = await db.collection('catalogs').doc(catalogId).get();
+        var snap = await db.collection('itemsList').doc(catalogId).get();
         var jsonData = snap.data() as Map<String, dynamic>;
 
         String name = jsonData['name'];
 
         var snap1 = await db
-            .collection('catalogs')
+            .collection('itemsList')
             .doc(catalogId)
             .collection('items')
             .get();

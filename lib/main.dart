@@ -7,6 +7,7 @@ import 'package:shopping_list/utils/local_storage.dart';
 import 'core/go router/go_router.dart';
 import 'core/themes.dart';
 import 'utils/initial_page.dart';
+import 'utils/get_it.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,9 @@ Future<void> main() async {
 
   //firebase
   await initFirebase();
+
+  // get it
+  await getItSetup();
 
   String initialPage = getInitialPage();
 
